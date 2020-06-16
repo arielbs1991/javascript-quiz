@@ -1,0 +1,70 @@
+//TODO: onclick, button starts timer
+//TODO: onclick, button triggers first question
+//TODO: create array of questions - assign each question to a value within array
+//TODO: randomize order of array so that questions appear in a random order
+//TODO: for each value of array, if correct answer, tally++, if incorrect answer, time-10seconds
+//TODO: upon answer click, move to next question
+//TODO: display score at end of quiz
+//TODO: have user enter in name to save results
+
+console.log("Hello")
+
+function runQuiz() {
+
+    var questionNum = [12345];
+    let question = [];
+    [0] = "In Javascript, what is a node?";
+    [1] = "How do we link .js files within an html file?";
+    [2] = "These are all examples of variable types, except:";
+    [3] = "Is JavaScript case sensitive?";
+    [4] = "JavaScript is like the ______ of a website.";
+
+    var score = "0";
+
+    //TODO: add constants using document.getElementById from html file
+
+    //TODO: need to randomize order of questions from array
+
+        for [0] {
+            var correctAns = "any discrete html element";
+            correctAns === true;
+            var incAns1 = "a repository with shared information";
+            incAns1 !== true;
+            var incAns2 = "a variable";
+            incAns2 !== true;
+            var incAns3 = "a part of a plant from which a branch can grow";
+            incAns3 !== true;
+            // might be able to take out the !== bits
+        }
+
+        for [1] {
+            var correctAns = "script tag";
+            correctAns === true;
+            var incAns1 = "link tag";
+            var incAns2 = "HTML tag";
+            var incAns3 = "href tag";
+        }
+
+        for [2] {
+            var correctAns = "node";
+            var incAns1 = "string";
+            var incAns2 = "boolean";
+            var incAns3 = "null";
+        }
+
+        for [3] {
+            var correctAns = "yes";
+            var incAns1 = "no";
+            var incAns2 = "only after a really rough day";
+        }
+
+        for [4] {
+            var correctAns = "muscle";
+            var incAns1 = "bones";
+            var incAns2 = "flesh";
+            var incAns3 = "Tubba Blubba's Heart";
+        }
+
+}
+
+//run function on click

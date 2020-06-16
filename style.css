@@ -1,0 +1,34 @@
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(252, 109, 57);
+    box-sizing: border-box;
+}
+
+.center {
+    text-align: center;
+}
+
+h1, h3 {
+    color: rgb(37, 219, 219);
+}
+
+#timer {
+    text-align: right;
+    color: white;
+    background-color: black;
+    width: auto;
+}
+
+.quizBox {
+    background-color: white;
+    height: 400px;    
+}
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
