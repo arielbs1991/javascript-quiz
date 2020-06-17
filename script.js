@@ -7,74 +7,110 @@
 //TODO: display score at end of quiz
 //TODO: have user enter in name to save results
 
-console.log("Hello")
-
-function runQuiz() {
-
-    var questionNum = [12345];
-    questionNum[0] = "In Javascript, what is a node?";
-    questionNum[1] = "How do we link .js files within an html file?";
-    questionNum[2] = "These are all examples of variable types, except:";
-    questionNum[3] = "Is JavaScript case sensitive?";
-    questionNum[4] = "JavaScript is like the ______ of a website.";
-
-    for (i = 0; i <= questionNum.length; i++) {
-        console.log(questionNum[i]);
-    };
-    //not working. something wrong with my array setup?
-    
-
-    var qZeroAnswers = [1234];
-    qZeroAnswers[0] = "any discrete html element";
-    qZeroAnswers[1] = "a repository with shared information";
-    qZeroAnswers[2] = "a variable";
-    qZeroAnswers[3] = "a part of a plant from which a branch can grow";
-
-    var qOneAnswers = [1234];
-    qOneAnswers[0] = "script tag";
-    qOneAnswers[1] = "link tag";
-    qOneAnswers[2] = "HTML tag";
-    qOneAnswers[3] = "href tag";
-
-    var qTwoAnswers = [1234];
-    qTwoAnswers[0] = "node";
-    qTwoAnswers[1] = "string";
-    qTwoAnswers[2] = "boolean";
-    qTwoAnswers[3] = "null";
-
-    var qThreeAnswers = [1234];
-    qThreeAnswers[0] = "yes";
-    qThreeAnswers[1] = "no";
-    qThreeAnswers[2] = "only after a really rough day";
-
-    var qFourAnswers = [1234];
-    qFourAnswers[0] = "muscle";
-    qFourAnswers[1] = "bones";
-    qFourAnswers[2] = "flesh";
-    qFourAnswers[3] = "Tubba Blubba's Heart";
-
-    var correctAns = [
-        qZeroAnswers[0],
-        qOneAnswers[0],
-        qTwoAnswers[0],
-        qThreeAnswers[0],
-        qFourAnswers[0],
-    ];
-    
-    correctAns === true;
-
-    var score = "0";
-
+var startQuizBtn = document.getElementById("startBtn");
+var quizAnswers = document.getElementsByClassName("quizAnswers");
+for (var i = 0; i < quizAnswers.length; i++) {
+    quizAnswers[i].style.display = "none";
 }
 
-document.querySelector.#startBtn.addEventListener("click", function) {
 
-}
+
+startQuizBtn.addEventListener("click", function () {
+
+    var secondsLeft = 90;
+    var timeE1 = document.getElementById("timer");
+    var quizQuestion = document.getElementById("quizQuestion");
+    var answersRoundOne = document.getElementById("answersRoundOne");
+    var answersRoundTwo = document.getElementById("answersRoundTwo");
+    var answersRoundThree = document.getElementById("answersRoundThree");
+    var answersRoundFour = document.getElementById("answersRoundFour");
+    var answersRoundFive = document.getElementById("answersRoundFive");
+
+    var questionNum = [
+        "In Javascript, what is a node?",
+        "How do we link .js files within an html file?",
+        "These are all examples of variable types, except:",
+        "Is JavaScript case sensitive?",
+        "JavaScript is like the ______ of a website."
+    ]
+
+    startQuizBtn.style.display = "none";
+
+    function setTime() {
+        var timeInterval = setInterval(function () {
+            secondsLeft--;
+            timeE1.textContent = secondsLeft;
+
+            if (secondsLeft === 0) {
+                clearInterval(timeInterval);
+                function sendMessage() {
+                    alert("Time's up!")
+                }
+                sendMessage();
+                //TODO: build sendMessage function for an alert
+                //create and engage function for user to input name with score in local storage
+            }
+          
+        }, 1000);
+    }
+    setTime();
+    function runQuiz() {
+
+        var headQuestion = document.createElement("h3");
+        headQuestion.innerHTML = questionNum[0];
+
+        // quizQuestion.appendChild(headQuestion)
+        //I feel like this doesn't work.
+    }
+    runQuiz();
+    answersRoundOne.style.display = "block";
+    var correctAnswer = document.getElementsByClassName("correctAns");
+    var incorrectAnswer = document.getElementsByClassName("incorrectAns");
+    var userAnswer = document.querySelectorAll("li")
+
+    for (i = 0; i < correctAnswer.length; i++) {
+
+        correctAnswer[i].addEventListener("click", function () {
+            score++;
+            // quizQuestion.appendChild.innerHTML = questionNum[1];
+            answersRoundOne.style.display = "none";
+            answersRoundTwo.style.display = "block";
+            console.log("clicked the right answer");
+        })
+    }
+
+    for (i = 0; i < incorrectAnswer.length; i++) {
+
+        incorrectAnswer[i].addEventListener("click", function () {
+            secondsLeft -10;
+            // quizQuestion.appendChild.innerHTML = questionNum[1];
+            answersRoundOne.style.display = "none";
+            answersRoundTwo.style.display = "block";
+            console.log("clicked the wrong answer");
+        })
+    }
+})
+        //this shit makes all of my li visible from page load
+       
+        function appendP() {
+        var paragraph = document.querySelector("P");
+        var score = document.getElementById("score");
+        paragraph.innerHTML = "Score = " + score;
+
+        // score.appendChild(`Score = ${score}`);
+    }
+        appendP();
+
+score = 0;
+
+
+
+
+
 
     //TODO: add constants using document.getElementById from html file
 
     //TODO: need to randomize order of questions from array
-
 
 
 //run function on click

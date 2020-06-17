@@ -20,6 +20,12 @@ h1, h3 {
     width: auto;
 }
 
+li {
+    border: 2px solid magenta;
+    border-radius: 8px;
+    /* border-spacing: 20px; not doing anything */
+}
+
 .quizBox {
     background-color: white;
     height: 400px;    
@@ -29,6 +35,10 @@ h1, h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.scoreBox {
+    bottom: 0;
 }
 
 

@@ -1,4 +1,90 @@
-//TODO: onclick, button starts timer
+var qZeroAnswers = [1234];
+        qZeroAnswers[0] = "any discrete html element";
+        qZeroAnswers[1] = "a repository with shared information";
+        qZeroAnswers[2] = "a variable";
+        qZeroAnswers[3] = "a part of a plant from which a branch can grow";
+
+        var qOneAnswers = [1234];
+        qOneAnswers[0] = "script tag";
+        qOneAnswers[1] = "link tag";
+        qOneAnswers[2] = "HTML tag";
+        qOneAnswers[3] = "href tag";
+
+        var qTwoAnswers = [1234]; ROUND THREE
+        qTwoAnswers[0] = "node";
+        qTwoAnswers[1] = "string";
+        qTwoAnswers[2] = "boolean";
+        qTwoAnswers[3] = "null";
+
+        var qThreeAnswers = [1234]; ROUND FOUR
+        qThreeAnswers[0] = "yes";
+        qThreeAnswers[1] = "no";
+        qThreeAnswers[2] = "only after a really rough day";
+
+        var qFourAnswers = [1234]; ROUND FIVE
+        qFourAnswers[0] = "muscle";
+        qFourAnswers[1] = "bones";
+        qFourAnswers[2] = "flesh";
+        qFourAnswers[3] = "Tubba Blubba's Heart";
+
+        var correctAns = [
+            qZeroAnswers[0],
+            qOneAnswers[0],
+            qTwoAnswers[0],
+            qThreeAnswers[0],
+            qFourAnswers[0],
+        ];
+        
+        correctAns === true;
+
+         var zeroQButton = [
+            document.createElement("Button").textContent = qZeroAnswers[0],
+            document.createElement("Button").textContent = qZeroAnswers[1],
+            document.createElement("Button").textContent = qZeroAnswers[2],
+            document.createElement("Button").textContent = qZeroAnswers[3],
+        ]
+
+        // startQuizBtn.innerHTML = questionNum[1];
+        var firstQButton = [
+            document.createElement("Button").textContent = qOneAnswers[0],
+            document.createElement("Button").textContent = qOneAnswers[1],
+            document.createElement("Button").textContent = qOneAnswers[2],
+            document.createElement("Button").textContent = qOneAnswers[3],
+        ]
+
+        // startQuizBtn.innerHTML = questionNum[2];
+        var secondQButton = [
+            document.createElement("Button").textContent = qTwoAnswers[0],
+            document.createElement("Button").textContent = qTwoAnswers[1],
+            document.createElement("Button").textContent = qTwoAnswers[2],
+            document.createElement("Button").textContent = qTwoAnswers[3],
+        ]
+
+        // startQuizBtn.innerHTML = questionNum[3];
+        var thirdQButton = [
+            document.createElement("Button").textContent = qThreeAnswers[0],
+            document.createElement("Button").textContent = qThreeAnswers[1],
+            document.createElement("Button").textContent = qThreeAnswers[2],
+            document.createElement("Button").textContent = qThreeAnswers[3],
+        ]
+
+        // startQuizBtn.innerHTML = questionNum[4];
+        var fourthQButton = [
+            document.createElement("Button").textContent = qFourAnswers[0],
+            document.createElement("Button").textContent = qFourAnswers[1],
+            document.createElement("Button").textContent = qFourAnswers[2],
+            document.createElement("Button").textContent = qFourAnswers[3],
+        ]
+
+          for (i = 0; i <= questionNum.length; i++) {
+            console.log(questionNum[i]);
+        };
+
+         var score = "0";
+
+         messy code
+
+         //TODO: onclick, button starts timer
 //TODO: onclick, button triggers first question
 //TODO: create array of questions - assign each question to a value within array
 //TODO: randomize order of array so that questions appear in a random order
@@ -7,64 +93,121 @@
 //TODO: display score at end of quiz
 //TODO: have user enter in name to save results
 
-console.log("Hello")
+var startQuizBtn = document.getElementById("startBtn");
+var quizAnswers = document.getElementsByClassName("quizAnswers");
+for (var i = 0; i < quizAnswers.length; i++) {
+    quizAnswers[i].style.display = "none";
+}
 
-function runQuiz() {
+//assumptions
+//we have and h1 element to hold questions - questionsEl
+//we have an empty div to hold answers  - answersEl
 
-    var questionNum = [12345];
-    let question = [];
-    [0] = "In Javascript, what is a node?";
-    [1] = "How do we link .js files within an html file?";
-    [2] = "These are all examples of variable types, except:";
-    [3] = "Is JavaScript case sensitive?";
-    [4] = "JavaScript is like the ______ of a website.";
+// var counter = 0
 
-    var score = "0";
+// function renderQuestion(){
+//     questionEL.textContent = questions[counter].timeIntervalquestons[counter].choices.forEach(function(choice){
+
+//     })
+// }
+
+startQuizBtn.addEventListener("click", function () {
+
+    var secondsLeft = 90;
+    var timeE1 = document.getElementById("timer");
+    var quizQuestion = document.getElementById("quizQuestion");
+    var answersRoundOne = document.getElementById("answersRoundOne");
+    var answersRoundTwo = document.getElementById("answersRoundTwo");
+    var answersRoundThree = document.getElementById("answersRoundThree");
+    var answersRoundFour = document.getElementById("answersRoundFour");
+    var answersRoundFive = document.getElementById("answersRoundFive");
+
+    var questionNum = [
+        "In Javascript, what is a node?",
+        "How do we link .js files within an html file?",
+        "These are all examples of variable types, except:",
+        "Is JavaScript case sensitive?",
+        "JavaScript is like the ______ of a website."
+    ]
+
+    startQuizBtn.style.display = "none";
+
+    function setTime() {
+        var timeInterval = setInterval(function () {
+            secondsLeft--;
+            timeE1.textContent = secondsLeft;
+
+            if (secondsLeft === 0) {
+                clearInterval(timeInterval);
+                function sendMessage() {
+                    alert("Time's up!")
+                }
+                sendMessage();
+                //TODO: build sendMessage function for an alert
+                //create and engage function for user to input name with score in local storage
+            }
+          
+        }, 1000);
+    }
+    setTime();
+    function runQuiz() {
+
+        var headQuestion = document.createElement("h3");
+        headQuestion.innerHTML = questionNum[0];
+
+        // quizQuestion.appendChild(headQuestion)
+        //I feel like this doesn't work.
+    }
+    runQuiz();
+    answersRoundOne.style.display = "block";
+    var correctAnswer = document.getElementsByClassName("correctAns");
+    var incorrectAnswer = document.getElementsByClassName("incorrectAns");
+    var userAnswer = document.querySelectorAll("li")
+
+    for (i = 0; i < correctAnswer.length; i++) {
+
+        correctAnswer[i].addEventListener("click", function () {
+            score++;
+            // quizQuestion.appendChild.innerHTML = questionNum[1];
+            answersRoundOne.style.display = "none";
+            answersRoundTwo.style.display = "block";
+            console.log("clicked the right answer");
+        })
+    }
+
+    for (i = 0; i < incorrectAnswer.length; i++) {
+
+        incorrectAnswer[i].addEventListener("click", function () {
+            secondsLeft -10;
+            // quizQuestion.appendChild.innerHTML = questionNum[1];
+            answersRoundOne.style.display = "none";
+            answersRoundTwo.style.display = "block";
+            console.log("clicked the wrong answer");
+        })
+    }
+})
+        //this shit makes all of my li visible from page load
+       
+        function appendP() {
+        var paragraph = document.querySelector("P");
+        var score = document.getElementById("score");
+        paragraph.innerHTML = "Score = " + score;
+
+        // score.appendChild(`Score = ${score}`);
+    }
+        appendP();
+
+score = 0;
+
+
+
+
+
 
     //TODO: add constants using document.getElementById from html file
 
     //TODO: need to randomize order of questions from array
 
-        for [0] {
-            var correctAns = "any discrete html element";
-            correctAns === true;
-            var incAns1 = "a repository with shared information";
-            incAns1 !== true;
-            var incAns2 = "a variable";
-            incAns2 !== true;
-            var incAns3 = "a part of a plant from which a branch can grow";
-            incAns3 !== true;
-            // might be able to take out the !== bits
-        }
-
-        for [1] {
-            var correctAns = "script tag";
-            correctAns === true;
-            var incAns1 = "link tag";
-            var incAns2 = "HTML tag";
-            var incAns3 = "href tag";
-        }
-
-        for [2] {
-            var correctAns = "node";
-            var incAns1 = "string";
-            var incAns2 = "boolean";
-            var incAns3 = "null";
-        }
-
-        for [3] {
-            var correctAns = "yes";
-            var incAns1 = "no";
-            var incAns2 = "only after a really rough day";
-        }
-
-        for [4] {
-            var correctAns = "muscle";
-            var incAns1 = "bones";
-            var incAns2 = "flesh";
-            var incAns3 = "Tubba Blubba's Heart";
-        }
-
-}
 
 //run function on click
+        
