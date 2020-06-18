@@ -49,11 +49,14 @@ quizData.set(3, new Map([
 var quizKeys = Array.from(quizData.keys());
 var quizKey = quizKeys.shift();
 var startQuizBtn = document.getElementById("startBtn");
+var scoreField = document.getElementById("score");
 var quizFields = document.getElementById("quizFields");
 
 console.log("quizKeys are ", quizKeys);
 
-function askQuestion(question, answers) {
+function askQuestion(key) {
+    var question = key.get("question");
+    var answers = key.get("answers");
     console.log("askquestion called", question);
     while (quizFields.firstChild) {
         quizFields.removeChild(quizFields.firstChild);
@@ -66,7 +69,7 @@ function askQuestion(question, answers) {
     for (let i in answers) {
         var answerItem = document.createElement('li');
         answerItem.addEventListener('click', function () {
-            quizClick(i);
+            quizClick(i, key);
         })
         answerItem.innerText = answers[i];
         answersList.appendChild(answerItem);
@@ -80,20 +83,22 @@ function askQuestion(question, answers) {
 }
 
 
-function quizClick(i) {
-    console.log("quizclick called with ", quizKey);
-    
-    if (i!=undefined) {
-        if (i == quizData.get(quizKey).get("correct")) {
-            score++;
-        } else {
-            secondsLeft -= 10;
-        }
+function quizClick(i, key) {
+    console.log("quizclick called with ", key);
+
+
+    if (i == key.get("correct")) {
+        score++;
+        scoreField.innerHTML = score;
+    } else {
+        secondsLeft -= 10;
     }
-    quizKey = quizKeys.shift();
-    if (quizKey!=undefined) {
-        console.log("quizkey is ", quizKey);
-        askQuestion(quizData.get(quizKey).get("question"), quizData.get(quizKey).get("answers"));
+
+
+    key = quizData.get(quizKeys.shift());
+    if (key != undefined) {
+        console.log("quizkey is ", key);
+        askQuestion(key);
     } else {
         console.log("quizclick out of questions");
         finishQuiz();
@@ -138,7 +143,7 @@ startQuizBtn.addEventListener("click",
         }
         //running setTime function
         setTime();
-        askQuestion(undefined);
+        askQuestion(quizData.get(quizKey));
     });
 
 // var startQuizBtn = document.getElementById("startBtn");
