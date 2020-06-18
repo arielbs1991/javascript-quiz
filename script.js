@@ -14,28 +14,38 @@ for (var i = 0; i < quizAnswers.length; i++) {
 }
 
 
-
+//start the quiz
 startQuizBtn.addEventListener("click", function () {
 
     var secondsLeft = 90;
+    //timer bar inside quizBox div
     var timeE1 = document.getElementById("timer");
-    var quizQuestion = document.getElementById("quizQuestion");
+    //the span in which to display quiz questions
+    var questionSpan = document.getElementById("questionSpan");
+    //ul with round one answers
     var answersRoundOne = document.getElementById("answersRoundOne");
+    //ul with round two answers
     var answersRoundTwo = document.getElementById("answersRoundTwo");
+    //ul with round three answers
     var answersRoundThree = document.getElementById("answersRoundThree");
+    //ul with round four answers
     var answersRoundFour = document.getElementById("answersRoundFour");
+    //ul with round five answers
     var answersRoundFive = document.getElementById("answersRoundFive");
 
-    var questionNum = [
-        "In Javascript, what is a node?",
-        "How do we link .js files within an html file?",
-        "These are all examples of variable types, except:",
-        "Is JavaScript case sensitive?",
-        "JavaScript is like the ______ of a website."
-    ]
+    //array of questions
+    // var questionNum = [
+    //     "In Javascript, what is a node?",
+    //     "How do we link .js files within an html file?",
+    //     "These are all examples of variable types, except:",
+    //     "Is JavaScript case sensitive?",
+    //     "JavaScript is like the ______ of a website."
+    // ]
 
+    //hiding start quiz button on click
     startQuizBtn.style.display = "none";
 
+    //start timer countdown
     function setTime() {
         var timeInterval = setInterval(function () {
             secondsLeft--;
@@ -47,50 +57,81 @@ startQuizBtn.addEventListener("click", function () {
                     alert("Time's up!")
                 }
                 sendMessage();
-                //TODO: build sendMessage function for an alert
+                //TODO: build sendMessage function for an alert, maybe change it to display on page with prompt and textbox to enter initials
                 //create and engage function for user to input name with score in local storage
             }
           
         }, 1000);
     }
+    //running setTime function
     setTime();
-    function runQuiz() {
 
-        var headQuestion = document.createElement("h3");
-        headQuestion.innerHTML = questionNum[0];
 
-        // quizQuestion.appendChild(headQuestion)
-        //I feel like this doesn't work.
-    }
-    runQuiz();
+    // function displayQuestions() {
+
+    //     var nodeH3Question = document.createElement("h3");
+    //     nodeH3Question.setAttribute('questionSpan', "h3");
+    //     questionSpan.innerHTML = questionNum[0];
+
+        
+
+       
+    // }
+    // displayQuestions();
+    // firstQuestion();
     answersRoundOne.style.display = "block";
     var correctAnswer = document.getElementsByClassName("correctAns");
     var incorrectAnswer = document.getElementsByClassName("incorrectAns");
     var userAnswer = document.querySelectorAll("li")
+    function showFirstQuestion() {
+        // for (i = 0; i < correctAnswer.length; i++) {
+            //cannot read property length at undefined. Is it because there's no array? It was working before
 
-    for (i = 0; i < correctAnswer.length; i++) {
+            correctAnswer[0].addEventListener("click", function () {
+                score++;
+                answersRoundOne.style.display = "none";
+                answersRoundTwo.style.display = "block";
+                console.log("clicked the right answer");
+                secondQuestion();
+            })
+        // }
 
-        correctAnswer[i].addEventListener("click", function () {
-            score++;
-            // quizQuestion.appendChild.innerHTML = questionNum[1];
-            answersRoundOne.style.display = "none";
-            answersRoundTwo.style.display = "block";
-            console.log("clicked the right answer");
-        })
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft -10;
+                answersRoundOne.style.display = "none";
+                answersRoundTwo.style.display = "block";
+                console.log("clicked the wrong answer");
+                secondQuestion();
+            })
+        }
     }
+    showFirstQuestion();
+    function secondQuestion(){
 
-    for (i = 0; i < incorrectAnswer.length; i++) {
+        for (i = 0; i < correctAnswer.length; i++) {
 
-        incorrectAnswer[i].addEventListener("click", function () {
-            secondsLeft -10;
-            // quizQuestion.appendChild.innerHTML = questionNum[1];
-            answersRoundOne.style.display = "none";
-            answersRoundTwo.style.display = "block";
-            console.log("clicked the wrong answer");
-        })
+            correctAnswer[i].addEventListener("click", function () {
+                score++;
+                answersRoundTwo.style.display = "none";
+                answersRoundThree.style.display = "block";
+                console.log("clicked the right answer");
+            })
+        }
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft -10;
+                answersRoundTwo.style.display = "none";
+                answersRoundThree.style.display = "block";
+                console.log("clicked the wrong answer");
+            })
+        }
     }
 })
-        //this shit makes all of my li visible from page load
+
        
         function appendP() {
         var paragraph = document.querySelector("P");
