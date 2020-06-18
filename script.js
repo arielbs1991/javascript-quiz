@@ -46,6 +46,30 @@ quizData.set(3, new Map([
     ["correct", 1]
 ]));
 
+quizData.set(4, new Map([
+    ["question", "Is JavaScript case sensitive?"],
+    ["answers", [
+        "no",
+        "yes",
+        "only after a really rough day"
+    ]
+    ],
+    ["correct", 1]
+]));
+
+quizData.set(5, new Map([
+    ["question", "JavaScript is like the ______ of a website."],
+    ["answers", [
+        "bones",
+        "muscle",
+        "flesh",
+        "soul",
+        "Tubba Blubba's Heart"
+    ]
+    ],
+    ["correct", 1]
+]));
+
 var quizKeys = Array.from(quizData.keys());
 var quizKey = quizKeys.shift();
 var startQuizBtn = document.getElementById("startBtn");
