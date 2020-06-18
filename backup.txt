@@ -1,4 +1,4 @@
-var qZeroAnswers = [1234];
+var qZeroAnswers = [
         qZeroAnswers[0] = "any discrete html element";
         qZeroAnswers[1] = "a repository with shared information";
         qZeroAnswers[2] = "a variable";
@@ -211,3 +211,128 @@ score = 0;
 
 //run function on click
         
+        answersRoundOne.style.display = "block";
+    var correctAnswer = document.getElementsByClassName("correctAns");
+    var incorrectAnswer = document.getElementsByClassName("incorrectAns");
+    var userAnswer = document.querySelectorAll("li")
+    function showFirstQuestion() {
+
+        correctAnswer[0].addEventListener("click", function () {
+            score++;
+            answersRoundOne.style.display = "none";
+            answersRoundTwo.style.display = "block";
+            console.log("clicked the right answer");
+            showSecondQuestion();
+        })
+
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft - 10;
+                answersRoundOne.style.display = "none";
+                answersRoundTwo.style.display = "block";
+                console.log("clicked the wrong answer");
+                showSecondQuestion();
+            })
+        }
+    }
+    showFirstQuestion();
+    function showSecondQuestion() {
+
+
+        correctAnswer[0].addEventListener("click", function () {
+            score++;
+            answersRoundTwo.style.display = "none";
+            answersRoundThree.style.display = "block";
+            console.log("clicked the right answer");
+            showThirdQuestion();
+        })
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft - 10;
+                answersRoundTwo.style.display = "none";
+                answersRoundThree.style.display = "block";
+                console.log("clicked the wrong answer");
+                showThirdQuestion();
+            })
+        }
+    }
+    function showThirdQuestion() {
+
+        correctAnswer[0].addEventListener("click", function () {
+            score++;
+            answersRoundThree.style.display = "none";
+            answersRoundFour.style.display = "block";
+            console.log("clicked the right answer");
+            showFourthQuestion();
+        })
+
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft - 10;
+                answersRoundThree.style.display = "none";
+                answersRoundFour.style.display = "block";
+                console.log("clicked the wrong answer");
+                showFourthQuestion();
+            })
+        }
+    }
+    function showFourthQuestion() {
+
+        correctAnswer[0].addEventListener("click", function () {
+            score++;
+            answersRoundFour.style.display = "none";
+            answersRoundFive.style.display = "block";
+            console.log("clicked the right answer");
+            showFifthQuestion();
+        })
+
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft - 10;
+                answersRoundFour.style.display = "none";
+                answersRoundFive.style.display = "block";
+                console.log("clicked the wrong answer");
+                showFifthQuestion();
+            })
+        }
+    }
+    function showFifthQuestion() {
+
+        correctAnswer[0].addEventListener("click", function () {
+            score++;
+            answersRoundFive.style.display = "none";
+            // answersRoundFour.style.display = "block";
+            console.log("clicked the right answer");
+            // showFourthQuestion();
+        })
+
+
+        for (i = 0; i < incorrectAnswer.length; i++) {
+
+            incorrectAnswer[i].addEventListener("click", function () {
+                secondsLeft - 10;
+                answersRoundFive.style.display = "none";
+                // answersRoundFour.style.display = "block";
+                console.log("clicked the wrong answer");
+                // showFourthQuestion();
+            })
+        }
+    }
+}
+
+function appendP() {
+        var paragraph = document.querySelector("P");
+        var score = document.getElementById("score");
+        paragraph.innerHTML = "Score = " + score;
+
+        // score.appendChild(`Score = ${score}`);
+    }
+    appendP();

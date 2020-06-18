@@ -7,43 +7,53 @@
 //TODO: display score at end of quiz
 //TODO: have user enter in name to save results
 
-var startQuizBtn = document.getElementById("startBtn");
-var quizAnswers = document.getElementsByClassName("quizAnswers");
-for (var i = 0; i < quizAnswers.length; i++) {
-    quizAnswers[i].style.display = "none";
+
+
+function askQuestion(question, answers) {
+    console.log("askquestion called", question);
+    var quizFields = document.getElementById("quizFields");
+    while (quizFields.firstChild) {
+        quizFields.removeChild(quizFields.firstChild);
+    }
+    var questionSpan = document.createElement("span");
+    questionSpan.innerText = question;
+
+    var answersSpan = document.createElement('span');
+    var answersList = document.createElement('ul');
+    for (let i in answers) {
+        var answerItem = document.createElement('li');
+        answerItem.innerText = answers[i];
+        answerItem.addEventListener("click", quizClick());
+        answersList.appendChild(answerItem);
+    }
+
+    answersSpan.appendChild(answersList);
+    quizFields.appendChild(questionSpan);
+    quizFields.appendChild(answersSpan);
+
+    return (answersSpan);
 }
 
 
-//start the quiz
-startQuizBtn.addEventListener("click", function () {
+function quizClick() {
+   console.log("quizclick called");
+    if (quizKeys.length > 0) {
+        var quizKey = quizKeys.shift();
+        console.log("quizkey is ", quizKey);
+        askQuestion(quizData.get(quizKey).get("question"), quizData.get(quizKey).get("answers"));
+    } else {
+        console.log("quizclick out of questions");
+    }
+}
 
+function startQuiz() {
+console.log("startquiz called");
     var secondsLeft = 90;
     //timer bar inside quizBox div
     var timeE1 = document.getElementById("timer");
-    //the span in which to display quiz questions
-    var questionSpan = document.getElementById("questionSpan");
-    //ul with round one answers
-    var answersRoundOne = document.getElementById("answersRoundOne");
-    //ul with round two answers
-    var answersRoundTwo = document.getElementById("answersRoundTwo");
-    //ul with round three answers
-    var answersRoundThree = document.getElementById("answersRoundThree");
-    //ul with round four answers
-    var answersRoundFour = document.getElementById("answersRoundFour");
-    //ul with round five answers
-    var answersRoundFive = document.getElementById("answersRoundFive");
-
-    //array of questions
-    // var questionNum = [
-    //     "In Javascript, what is a node?",
-    //     "How do we link .js files within an html file?",
-    //     "These are all examples of variable types, except:",
-    //     "Is JavaScript case sensitive?",
-    //     "JavaScript is like the ______ of a website."
-    // ]
 
     //hiding start quiz button on click
-    startQuizBtn.style.display = "none";
+    // startQuizBtn.style.display = "none";
 
     //start timer countdown
     function setTime() {
@@ -60,98 +70,52 @@ startQuizBtn.addEventListener("click", function () {
                 //TODO: build sendMessage function for an alert, maybe change it to display on page with prompt and textbox to enter initials
                 //create and engage function for user to input name with score in local storage
             }
-          
+
         }, 1000);
     }
     //running setTime function
     setTime();
+    
+    document.getElementById("quizFields").addEventListener("click", quizClick());
+}
 
+var startQuizBtn = document.getElementById("startBtn");
 
-    // function displayQuestions() {
+var quizData = new Map();
+quizData.set(1, new Map([
+    ["question", "In Javascript, what is a node?"],
+    ["answers", [
+        "any discrete html element",
+        "a repository with shared information",
+        "a variable",
+        "a part of a plant from which a branch can grow"
+    ]
+    ]
+]));
 
-    //     var nodeH3Question = document.createElement("h3");
-    //     nodeH3Question.setAttribute('questionSpan', "h3");
-    //     questionSpan.innerHTML = questionNum[0];
+quizData.set(2, new Map([
+    ["question", "How do we link .js files within an html file?"],
+    ["answers", [
+        "script tag",
+        "link tag",
+        "HTML tag",
+        "hre tag"
+    ]
+    ]
+]));
 
-        
+quizData.set(3, new Map([
+    ["question", "These are all examples of variable types, except:"],
+    ["answers", [
+        "node",
+        "string",
+        "boolean",
+        "null"
+    ]
+    ]
+]));
 
-       
-    // }
-    // displayQuestions();
-    // firstQuestion();
-    answersRoundOne.style.display = "block";
-    var correctAnswer = document.getElementsByClassName("correctAns");
-    var incorrectAnswer = document.getElementsByClassName("incorrectAns");
-    var userAnswer = document.querySelectorAll("li")
-    function showFirstQuestion() {
-        // for (i = 0; i < correctAnswer.length; i++) {
-            //cannot read property length at undefined. Is it because there's no array? It was working before
-
-            correctAnswer[0].addEventListener("click", function () {
-                score++;
-                answersRoundOne.style.display = "none";
-                answersRoundTwo.style.display = "block";
-                console.log("clicked the right answer");
-                secondQuestion();
-            })
-        // }
-
-        for (i = 0; i < incorrectAnswer.length; i++) {
-
-            incorrectAnswer[i].addEventListener("click", function () {
-                secondsLeft -10;
-                answersRoundOne.style.display = "none";
-                answersRoundTwo.style.display = "block";
-                console.log("clicked the wrong answer");
-                secondQuestion();
-            })
-        }
-    }
-    showFirstQuestion();
-    function secondQuestion(){
-
-        for (i = 0; i < correctAnswer.length; i++) {
-
-            correctAnswer[i].addEventListener("click", function () {
-                score++;
-                answersRoundTwo.style.display = "none";
-                answersRoundThree.style.display = "block";
-                console.log("clicked the right answer");
-            })
-        }
-
-        for (i = 0; i < incorrectAnswer.length; i++) {
-
-            incorrectAnswer[i].addEventListener("click", function () {
-                secondsLeft -10;
-                answersRoundTwo.style.display = "none";
-                answersRoundThree.style.display = "block";
-                console.log("clicked the wrong answer");
-            })
-        }
-    }
-})
-
-       
-        function appendP() {
-        var paragraph = document.querySelector("P");
-        var score = document.getElementById("score");
-        paragraph.innerHTML = "Score = " + score;
-
-        // score.appendChild(`Score = ${score}`);
-    }
-        appendP();
-
-score = 0;
-
-
-
-
-
-
-    //TODO: add constants using document.getElementById from html file
-
-    //TODO: need to randomize order of questions from array
-
-
-//run function on click
+var quizKeys = Array.from(quizData.keys());
+console.log("quizKeys are ", quizKeys);
+startQuizBtn.style.display = "block";
+startQuizBtn.addEventListener("click", startQuiz());
